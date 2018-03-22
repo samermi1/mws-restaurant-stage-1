@@ -5,9 +5,9 @@ body,td,th,p{
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 10pt;
 	color: #333;
-	line-height: 1.5;
+  line-height: 1.5;
 }
-body, img, object {
+img, object {
 	max-width: 100%;
 }
 body {
@@ -74,7 +74,8 @@ nav h1 a {
     background-color: #eee;
     font-size: 17px;
     margin: 0;
-    width: calc(50% - 80px);
+    max-width: 100%;
+    /*width: calc(50% - 80px);*/
 }
 
 /* Display list items side by side */
@@ -102,7 +103,7 @@ nav h1 a {
 }
 /* ====================== Map ====================== */
 #map {
-  height: 400px;
+  height: 300px;
   width: 100%;
   background-color: #ccc;
 }
@@ -138,17 +139,17 @@ nav h1 a {
   background-color: #f3f3f3;
   list-style: outside none none;
   margin: 0;
-  padding: 30px 15px 60px;
+  padding: 20px 10px 20px;
   text-align: center;
-  width: 100%;
+  max-width: 100%;
 }
 #restaurants-list li {
   background-color: #fff;
   border: 2px solid #ccc;
   font-family: Arial,sans-serif;
-  margin: 15px;
+  margin-bottom: 15px;
   min-height: 380px;
-  padding: 0 30px 25px;
+  padding: 5px 5px;
   text-align: left;
   max-width: 100%;
 }
@@ -158,7 +159,7 @@ nav h1 a {
   margin: 0;
   max-width: 100%;
   min-height: 248px;
-  min-width: 100%;
+  max-width: 100%;
 }
 #restaurants-list li h1 {
   color: #f18200;
@@ -187,31 +188,41 @@ nav h1 a {
   text-transform: uppercase;
 }
 
+/* ==================== Main Page Breakpoints ===================== */
+
+@media screen and (min-width: 750px) {
+  #restaurants-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  #restaurants-list li {
+    width: calc((100% - 30px) / 2);
+  }
+}
+
 /* ====================== Restaurant Details ====================== */
 .inside header {
-  position: fixed;
+  position: static;
   top: 0;
   width: 100%;
   z-index: 1000;
 }
 .inside #map-container {
   background: blue none repeat scroll 0 0;
-  height: 87%;
-  position: fixed;
-  right: 0;
-  top: 80px;
-  width: 50%;
+  height: 300px;
+  max-width: 100%;
 }
 .inside #map {
   background-color: #ccc;
   height: 100%;
   width: 100%;
 }
-.inside #footer {
+/*.inside #footer {
   bottom: 0;
   position: absolute;
-  width: 50%;
-}
+  width: 100vw;
+}*/
 #restaurant-name {
   color: #f18200;
   font-family: Arial,sans-serif;
@@ -222,8 +233,13 @@ nav h1 a {
   text-transform: uppercase;
   line-height: 1.1;
 }
+#restaurant-img-container {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
 #restaurant-img {
-	width: 90%;
+  max-width: 100%;
 }
 #restaurant-address {
   font-size: 12pt;
@@ -239,16 +255,17 @@ nav h1 a {
   padding: 2px 0;
   text-align: center;
   text-transform: uppercase;
-	width: 90%;
+	width: 100%;
 }
 #restaurant-container, #reviews-container {
   border-bottom: 1px solid #d9d9d9;
   border-top: 1px solid #fff;
-  padding: 140px 40px 30px;
-  width: 50%;
+  padding: 20px 10px 20px;
+  max-width: 100%;
 }
 #reviews-container {
-  padding: 30px 40px 80px;
+  padding: 20px 10px 20px;
+  font-size: 50px;
 }
 #reviews-container h2 {
   color: #f58500;
@@ -263,18 +280,76 @@ nav h1 a {
 }
 #reviews-list li {
   background-color: #fff;
-    border: 2px solid #f3f3f3;
+  border: 2px solid #f3f3f3;
   display: block;
   list-style-type: none;
   margin: 0 0 30px;
   overflow: hidden;
   padding: 0 20px 20px;
   position: relative;
-  width: 85%;
 }
 #reviews-list li p {
   margin: 0 0 10px;
 }
 #restaurant-hours td {
   color: #666;
+}
+
+
+/* ------ Breakpoints*/
+
+@media screen and (min-width: 800px) {
+  .inside #restaurant-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+  .inside #restaurant-name {
+    order: -10;
+    width: 100%;
+  }
+  .inside #restaurant-img-container {
+    max-width: calc(2*(100% - 10px)/ 3);
+    order: -2;
+    margin-right: 10px;
+  }
+  .inside #restaurant-details {
+    width: calc((100% - 10px) / 3);
+    order: -1;
+    height:30px;
+  }
+  .inside #reviews-list {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+  .inside li {
+    width: calc((100% - 88px) / 2);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .inside #restaurant-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+  .inside #restaurant-name {
+    order: -10;
+    width: 100%;
+  }
+  .inside #restaurant-img-container {
+    max-width: calc(2 * (100% - 10px) / 3);
+    order: -2;
+    margin-right: 10px;
+  }
+  .inside #restaurant-details {
+    width: calc((100% - 10px) / 3);
+    order: -1; 
+  }
+  .inside {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
