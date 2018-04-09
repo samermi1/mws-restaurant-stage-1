@@ -138,10 +138,41 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
 createRestaurantHTML = (restaurant) => {
   const li = document.createElement('li');
 
+  // Create a picture element to make the images responsive.
+  imgPath = DBHelper.imageUrlForRestaurant(restaurant).slice(0, -4);
+  const picture = document.createElement('picture');
+
+  const smallSource = document.createElement('source');
+  smallSource.setAttribute('media', '(max-width: 530px)');
+  smallSource.setAttribute(
+    'srcset',
+    `${imgPath}-500_small_1x.jpg, ${imgPath}-1000_small_2x.jpg 2x`
+  );
+  picture.appendChild(smallSource);
+
+  const mediumSource = document.createElement('source');
+  mediumSource.setAttribute('media', '(max-width: 720px)');
+  mediumSource.setAttribute(
+    'srcset',
+    `${imgPath}-800_large_1x.jpg, ${imgPath}-1600_large_2x.jpg 2x`
+  );
+  picture.appendChild(mediumSource);
+
+  const largeSource = document.createElement('source');
+  largeSource.setAttribute('media', '(min-width: 721px)');
+  largeSource.setAttribute(
+    'srcset',
+    `${imgPath}-500_small_1x.jpg, ${imgPath}-1000_small_2x.jpg 2x`
+  );
+  picture.appendChild(largeSource);
+
   const image = document.createElement('img');
-  image.className = 'restaurant-img';
-  image.src = DBHelper.imageUrlForRestaurant(restaurant);
-  li.append(image);
+  image.className = 'restaurant-img'
+  image.src = `${imgPath}-800_large_1x.jpg`;
+  image.setAttribute('alt', `Image of the ${restaurant.name} restaurant`);
+  picture.appendChild(image);
+
+  li.appendChild(picture);
 
   const name = document.createElement('h1');
   name.innerHTML = restaurant.name;

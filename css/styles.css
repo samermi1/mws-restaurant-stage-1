@@ -164,9 +164,8 @@ nav h1 a {
   border-radius: 10px 10px 0 0;
   display: block;
   margin: 0;
-  max-width: 100%;
   min-height: 248px;
-  max-width: 100%;
+  width: 100%;
 }
 #restaurants-list li h1 {
   color: #f18200;
@@ -197,7 +196,7 @@ nav h1 a {
 
 /* ==================== Main Page Breakpoints ===================== */
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 720px) {
   nav h1 a {
     color: #fff;
     font-size: 24pt;
@@ -286,8 +285,8 @@ nav h1 a {
   padding: 0px;
 }
 
-#restaurant-img {
-  max-width: 100%;
+#restaurant-pic .restaurant-img {
+  width: 100%;
   border-radius: 10px 10px 0 0;
 }
 
